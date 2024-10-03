@@ -7,8 +7,10 @@ pipeline {
     stages {
         stage('restore') {
             steps {
-                sh 'echo "Restoring the Project"'
-                sh '/var/lib/jenkins/dotnet/dotnet restore "Technosavvy.mAPI/technosavvy.mAPI.csproj"'
+                script {
+                    sh 'echo "Restoring the Project"'
+                    sh '/var/lib/jenkins/dotnet/dotnet restore "Technosavvy.mAPI/technosavvy.mAPI.csproj"'
+                }
             }
         }
         stage('build') {
