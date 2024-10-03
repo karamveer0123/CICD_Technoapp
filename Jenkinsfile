@@ -7,9 +7,8 @@ pipeline {
     stages {
         stage('restore') {
             steps {
-                script {
-                    sh 'echo "Restoring the Project"'
-                    sh '/var/lib/jenkins/dotnet/dotnet restore "Technosavvy.mAPI/technosavvy.mAPI.csproj"'
+                sh 'echo "Restoring the Project"'
+                sh '/var/lib/jenkins/dotnet/dotnet restore "Technosavvy.mAPI/technosavvy.mAPI.csproj"'
                 }
             }
         }
