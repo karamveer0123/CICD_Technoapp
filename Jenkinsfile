@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    triggers {
+        // GitHub trigger example
+        githubPush() // This will listen for pushes to the repository
+    }
     stages {
         stage('restore') {
             steps {
