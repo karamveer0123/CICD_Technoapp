@@ -1,25 +1,41 @@
 pipeline {
     agent any
     triggers {
-        // GitHub trigger example
-        githubPush() // This will listen for pushes to the repository
+        // GitHub trigger for listening to pushes to the repository
+        githubPush()
     }
     stages {
-        stage('restore') {
+        stage('Restore') {
             steps {
-                sh 'echo "Restoring the Project"'
-                sh '/var/lib/jenkins/dotnet/dotnet restore "Technosavvy.mAPI/technosavvy.mAPI.csproj"'
+                script {
+                    echo "Restoring the Project"
+                    sh '/var/lib/jenkins/dotnet/dotnet restore "Technosavvy.mAPI/technosavvy.mAPI.csproj"'
                 }
             }
         }
-        stage('build') {
+        stage('Build') {
             steps {
-                sh '/var/lib/jenkins/dotnet/dotnet build "Technosavvy.mAPI/technosavvy.mAPI.csproj" -c release -o ./bin/build'
+                script {
+                    echo "Building the Project"
+                    sh '/var/lib/jenkins/dotnet/dotnet build "Technosavvy.mAPI/technosavvy.mAPI.csproj" -c Release -o ./bin/build'
+                }
             }
         }
-        stage('publish') {
+        stage('Publish') {
             steps {
-                sh '/var/lib/jenkins/dotnet/dotnet publish "Technosavvy.mAPI/technosavvy.mAPI.csproj" -c release -o ./bin/publish'
+                script {
+                    echo "Publishing the Project"
+                    sh '/var/lib/jenkins/dotnet/dotnet publish "Technosavvy.mAPI/technosavvy.mAPI.csproj" -c Release -o ./bin/publish'
+                }
             }
         }
     }
+    post {
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed. Please check the logs.'
+        }
+    }
+}
