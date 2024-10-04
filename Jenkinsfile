@@ -5,7 +5,7 @@ pipeline {
         githubPush()
     }
     stages {
-        stage('Restore') {
+        stage('Restore_mapi') {
             steps {
                 script {
                     echo "Restoring the Project"
@@ -13,7 +13,7 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+        stage('Build_mapi') {
             steps {
                 script {
                     echo "Building the Project"
@@ -21,7 +21,7 @@ pipeline {
                 }
             }
         }
-        stage('Publish') {
+        stage('Publish_mapi') {
             steps {
                 script {
                     echo "Publishing the Project"
@@ -29,7 +29,7 @@ pipeline {
                 }
             }
         }
-        stage('Restore') {
+        stage('Restore_webui') {
             steps {
                 script {
                     echo "Restoring the Project"
@@ -37,7 +37,7 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+        stage('Build_webui') {
             steps {
                 script {
                     echo "Building the Project"
@@ -45,7 +45,7 @@ pipeline {
                 }
             }
         }
-        stage('Publish') {
+        stage('Publish_webui') {
             steps {
                 script {
                     echo "Publishing the Project"
