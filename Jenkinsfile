@@ -53,6 +53,30 @@ pipeline {
                 }
             }
         }
+        stage('Restore_watcher') {
+            steps {
+                script {
+                    echo "Restoring the Project"
+                    sh '/var/lib/jenkins/dotnet/dotnet restore "Technosavvy.watcher/technosavvy.watcher.csproj"'
+                }
+            }
+        }
+        stage('Build_watcher') {
+            steps {
+                script {
+                    echo "Building the Project"
+                    sh '/var/lib/jenkins/dotnet/dotnet build "Technosavvy.watcher/technosavvy.watcher.csproj" -c Release -o ./Technosavvy.mAPI/bin/build'
+                }
+            }
+        }
+        stage('Publish_watcher') {
+            steps {
+                script {
+                    echo "Publishing the Project"
+                    sh '/var/lib/jenkins/dotnet/dotnet publish "Technosavvy.watcher/technosavvy.watcher.csproj" -c Release -o ./Technosavvy.mAPI/bin/publish'
+                }
+            }
+        }
     }
     post {
         success {
